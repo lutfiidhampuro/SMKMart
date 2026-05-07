@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SMKMart" Class="DatabaseDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-H4DVML9F;Initial Catalog=SMKMart;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="SMKMart.Properties.Settings" SettingsPropertyName="SMKMartConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DetailTrx" Member="DetailTrxes">
+    <Type Name="DetailTrx">
+      <Column Name="DetailTrxId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TrxId" Type="System.String" DbType="NChar(11) NOT NULL" CanBeNull="false" />
+      <Column Name="ProdukId" Type="System.String" DbType="NChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuyPrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellPrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromoId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Promo_DetailTrx" Member="Promo" ThisKey="PromoId" OtherKey="PromoId" Type="Promo" IsForeignKey="true" />
+      <Association Name="HeaderTrx_DetailTrx" Member="HeaderTrx" ThisKey="TrxId" OtherKey="TrxId" Type="HeaderTrx" IsForeignKey="true" />
+      <Association Name="Produk_DetailTrx" Member="Produk" ThisKey="ProdukId" OtherKey="ProdukId" Type="Produk" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Promo" Member="Promos">
+    <Type Name="Promo">
+      <Column Name="PromoId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProdukId" Type="System.String" DbType="NChar(6)" CanBeNull="true" />
+      <Column Name="BuyQty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Reward" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Promo_DetailTrx" Member="DetailTrxes" ThisKey="PromoId" OtherKey="PromoId" Type="DetailTrx" />
+      <Association Name="Produk_Promo" Member="Produk" ThisKey="ProdukId" OtherKey="ProdukId" Type="Produk" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="EmployeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Position" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Handphone" Type="System.String" DbType="NVarChar(13)" CanBeNull="true" />
+      <Column Name="Birthdate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Employee_HeaderTrx" Member="HeaderTrxes" ThisKey="EmployeeID" OtherKey="EmployeeId" Type="HeaderTrx" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HeaderTrx" Member="HeaderTrxes">
+    <Type Name="HeaderTrx">
+      <Column Name="TrxId" Type="System.String" DbType="NChar(11) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="HeaderTrx_DetailTrx" Member="DetailTrxes" ThisKey="TrxId" OtherKey="TrxId" Type="DetailTrx" />
+      <Association Name="Employee_HeaderTrx" Member="Employee" ThisKey="EmployeeId" OtherKey="EmployeeID" Type="Employee" IsForeignKey="true" />
+      <Association Name="Member_HeaderTrx" Member="Member" ThisKey="MemberId" OtherKey="MemberId" Type="Member" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Member" Member="Members">
+    <Type Name="Member">
+      <Column Name="MemberId" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Handphone" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
+      <Column Name="Expired" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Member_HeaderTrx" Member="HeaderTrxes" ThisKey="MemberId" OtherKey="MemberId" Type="HeaderTrx" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Produk" Member="Produks">
+    <Type Name="Produk">
+      <Column Name="ProdukId" Type="System.String" DbType="NChar(6) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Specification" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BuyPrice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SellPrice" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Produk_DetailTrx" Member="DetailTrxes" ThisKey="ProdukId" OtherKey="ProdukId" Type="DetailTrx" />
+      <Association Name="Produk_Promo" Member="Promos" ThisKey="ProdukId" OtherKey="ProdukId" Type="Promo" />
+    </Type>
+  </Table>
+</Database>
