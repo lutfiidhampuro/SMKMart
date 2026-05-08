@@ -12,6 +12,7 @@ namespace SMKMart
 {
     public partial class MainForm : Form
     {
+
         public MainForm()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace SMKMart
 
             masterToolStripMenuItem.Visible = status;
             logoutToolStripMenuItem.Visible = status;
+            viewToolStripMenuItem.Visible = status;
             //memberToolStripMenuItem.Visible = status;
             //promoToolStripMenuItem.Visible = status;
 
@@ -52,6 +54,16 @@ namespace SMKMart
         private void memberToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ManageMemberForm().Show();
+        }
+
+        private void promoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ManagePromoForm().Show();
+        }
+
+        private void transactionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TransactionForm().Show();
         }
     }
 }

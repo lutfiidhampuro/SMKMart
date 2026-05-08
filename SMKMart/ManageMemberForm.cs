@@ -94,6 +94,7 @@ namespace SMKMart
         {
             enableButtonAndFields(false);
             clearFields();
+            tbId.Text = "";
         }
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
