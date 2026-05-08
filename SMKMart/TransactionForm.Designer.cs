@@ -177,9 +177,8 @@
             this.lblPromo.AutoSize = true;
             this.lblPromo.Location = new System.Drawing.Point(394, 255);
             this.lblPromo.Name = "lblPromo";
-            this.lblPromo.Size = new System.Drawing.Size(60, 20);
+            this.lblPromo.Size = new System.Drawing.Size(0, 20);
             this.lblPromo.TabIndex = 14;
-            this.lblPromo.Text = "label11";
             // 
             // btnAdd
             // 
@@ -189,6 +188,7 @@
             this.btnAdd.TabIndex = 15;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnRemove
             // 
@@ -198,6 +198,7 @@
             this.btnRemove.TabIndex = 16;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
             // dgvData
             // 
@@ -223,9 +224,8 @@
             this.lblTotal.AutoSize = true;
             this.lblTotal.Location = new System.Drawing.Point(750, 517);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(59, 20);
+            this.lblTotal.Size = new System.Drawing.Size(0, 20);
             this.lblTotal.TabIndex = 19;
-            this.lblTotal.Text = "lblTotal";
             // 
             // btnNext
             // 
